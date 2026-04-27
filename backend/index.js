@@ -1,12 +1,16 @@
+import "dotenv/config";
 import express from "express";
 import { tavily } from '@tavily/core';
 import { GoogleGenAI } from "@google/genai";
-import { PROMPT_TEMPLATE } from "./prompt";
-import { z } from "zod";
+import { PROMPT_TEMPLATE } from "./prompt.js";
+import { email, z } from "zod";
 
 
 const app = express();
+
 app.use(express.json())
+
+
 const ai = new GoogleGenAI({
     apiKey:process.env.GEMINI_API_KEY
 });
@@ -27,7 +31,7 @@ app.post("conversation",(res,req)=>{
 })
 
 app.post("conversation:conversationId",(req,res)=>{
-    
+
 })
 
 app.post("/nova_ask", async (req, res) => {
